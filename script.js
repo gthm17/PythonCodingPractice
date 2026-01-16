@@ -77,60 +77,16 @@ async function init() {
 }
 
 async function loadPyodideEngine() {
-    pyodide = await loadPyodide();
+    pyodide = await loadPyodide({
+        indexURL: "https://cdn.jsdelivr.net/pyodide/v0.25.0/full/"
+    });
     await setupPythonEnv();
 }
 
 function initMonacoEditor() {
     return new Promise((resolve, reject) => {
         require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.45.0/min/vs' }});
-            // Add basic Python Intellisense
-            monaco.languages.registerCompletionItemProvider('python', {
-                provideCompletionItems: function(model, position) {
-                    var word = model.getWordUntilPosition(position);
-                    var range = {
-                        startLineNumber: position.lineNumber,
-                        endLineNumber: position.lineNumber,
-                        startColumn: word.startColumn,
-                        endColumn: word.endColumn
-                    };
-                    var suggestions = [
-                        { label: 'print', kind: monaco.languages.CompletionItemKind.Function, insertText: 'print(${1:object})', insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: 'Print objects to the text stream file' },
-                        { label: 'len', kind: monaco.languages.CompletionItemKind.Function, insertText: 'len(${1:object})', insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: 'Return the number of items in a container' },
-                        { label: 'input', kind: monaco.languages.CompletionItemKind.Function, insertText: 'input()', insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: 'Read a string from standard input' },
-                        { label: 'range', kind: monaco.languages.CompletionItemKind.Function, insertText: 'range(${1:stop})', insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: 'Return an object that produces a sequence of integers' },
-                        { label: 'def', kind: monaco.languages.CompletionItemKind.Keyword, insertText: 'def ${1:name}(${2:params}):\n\t', insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet },
-                        { label: 'if', kind: monaco.languages.CompletionItemKind.Keyword, insertText: 'if ${1:condition}:\n\t' },
-                        { label: 'else', kind: monaco.languages.CompletionItemKind.Keyword, insertText: 'else:\n\t' },
-                        { label: 'elif', kind: monaco.languages.CompletionItemKind.Keyword, insertText: 'elif ${1:condition}:\n\t' },
-                        { label: 'for', kind: monaco.languages.CompletionItemKind.Keyword, insertText: 'for ${1:target} in ${2:iter}:\n\t', insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet },
-                        { label: 'while', kind: monaco.languages.CompletionItemKind.Keyword, insertText: 'while ${1:condition}:\n\t' },
-                        { label: 'return', kind: monaco.languages.CompletionItemKind.Keyword, insertText: 'return ' },
-                        { label: 'import', kind: monaco.languages.CompletionItemKind.Keyword, insertText: 'import ' },
-                        { label: 'from', kind: monaco.languages.CompletionItemKind.Keyword, insertText: 'from ' },
-                        { label: 'class', kind: monaco.languages.CompletionItemKind.Keyword, insertText: 'class ${1:Name}:\n\t', insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet },
-                        { label: 'True', kind: monaco.languages.CompletionItemKind.Keyword, insertText: 'True' },
-                        { label: 'False', kind: monaco.languages.CompletionItemKind.Keyword, insertText: 'False' },
-                        { label: 'None', kind: monaco.languages.CompletionItemKind.Keyword, insertText: 'None' },
-                        { label: 'and', kind: monaco.languages.CompletionItemKind.Keyword, insertText: 'and ' },
-                        { label: 'or', kind: monaco.languages.CompletionItemKind.Keyword, insertText: 'or ' },
-                        { label: 'not', kind: monaco.languages.CompletionItemKind.Keyword, insertText: 'not ' },
-                        { label: 'in', kind: monaco.languages.CompletionItemKind.Keyword, insertText: 'in ' },
-                        { label: 'int', kind: monaco.languages.CompletionItemKind.Class, insertText: 'int(${1:x})', insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet },
-                        { label: 'str', kind: monaco.languages.CompletionItemKind.Class, insertText: 'str(${1:object})', insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet },
-                        { label: 'list', kind: monaco.languages.CompletionItemKind.Class, insertText: 'list(${1:iterable})', insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet },
-                        { label: 'dict', kind: monaco.languages.CompletionItemKind.Class, insertText: 'dict()' },
-                        { label: 'set', kind: monaco.languages.CompletionItemKind.Class, insertText: 'set()' },
-                        { label: 'float', kind: monaco.languages.CompletionItemKind.Class, insertText: 'float(${1:x})', insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet }
-                    ];
-                    
-                    // Add result to items
-                    suggestions.forEach(item => item.range = range);
-                    
-                    return { suggestions: suggestions };
-                }
-            });
-
+        require(['vs/editor/editor.main'], function() {
             editorInstance = monaco.editor.create(document.getElementById('monaco-editor-container'), {
                 value: "# Write your Python code here\n",
                 language: 'python',
@@ -139,11 +95,7 @@ function initMonacoEditor() {
                 minimap: { enabled: false },
                 scrollBeyondLastLine: false,
                 fontSize: 14,
-                fontFamily: "'Fira Code', 'Courier New', monospace",
-                suggest: {
-                    showKeywords: true,
-                    showSnippets: true
-                }
+                fontFamily: "'Fira Code', 'Courier New', monospace"
             });
             resolve();
         }, (err) => reject(err));
@@ -396,7 +348,7 @@ async function runTests() {
                 if (tc.hidden) {
                     failedMsg += `Test Case ${i+1} (Hidden) Failed.\n\n`;
                 } else {
-                    failedMsg += `Test Case ${i+1} Failed.\nInput: ${tc.input}\nExpected: ${tc.output}\nActual: ${actualOutput}\n\n`;
+                    failedMsg += `Test Case ${i+1} Failed.\nInput: ${tc.input}\nExpected: ${tc.output}\nActual:\n${actualOutput}\n\n`;
                 }
             }
         }
