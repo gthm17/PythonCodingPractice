@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Logic Drills</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.25.0/full/pyodide.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div id="loading-overlay" class="active">
+            <h1>Python Logic Drills</h1>
+            <p id="loading-text">Loading Python Engine...</p>
+            <button id="start-btn" disabled>Start Coding</button>
+        </div>
+
+        <div id="dashboard-view" class="view hidden">
+            <header>
+                <h1>Python Logic Drills</h1>
+                <div class="progress-container">
+                    <span>Progress: <span id="completion-percentage">0%</span></span>
+                    <div class="progress-bar-bg">
+                        <div id="global-progress-bar" class="progress-bar-fill"></div>
+                    </div>
+                    <span>Score: <span id="total-score">0</span></span>
+                </div>
+            </header>
+            <main id="question-grid">
+            </main>
+        </div>
+
+        <div id="workspace-view" class="view hidden">
+            <header class="workspace-header">
+                <button id="back-to-dashboard" class="secondary-btn">← Back</button>
+                <div class="question-info">
+                    <h2 id="ws-title">Question Title</h2>
+                    <span id="ws-timer">10:00</span>
+                </div>
+                <button id="show-solution-btn" class="danger-btn" disabled>Show Solution</button>
+            </header>
+            
+            <div class="workspace-main">
+                <div class="left-panel">
+                    <div class="panel-section description-section">
+                        <h3>Description</h3>
+                        <p id="ws-description"></p>
+                    </div>
+                    <div class="panel-section tests-section">
+                        <h3>Test Cases</h3>
+                        <table id="test-cases-table">
+                            <thead>
+                                <tr>
+                                    <th>Input</th>
+                                    <th>Expected Output</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="right-panel">
+                    <div class="editor-container">
+                        <div id="monaco-editor-container" style="width:100%; height:100%;"></div>
+                    </div>
+                    <div class="controls">
+                        <button id="run-btn" class="primary-btn">▶ Run Code</button>
+                    </div>
+                    <div class="console-container">
+                        <div class="console-header">Console / Output</div>
+                        <pre id="console-output"></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="completion-modal" class="modal hidden">
+            <div class="modal-content">
+                <h2>Well Done!</h2>
+                <p>You have solved all 30 questions.</p>
+                <p>Final Score: <span id="final-score"></span></p>
+                <button id="close-modal-btn">Close</button>
+            </div>
+        </div>
+        
+        <footer class="watermark-footer">GL17CH &copy; 2026</footer>
+    </div>
+
+    <script src="questions.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
