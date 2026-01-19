@@ -7,8 +7,9 @@ let currentState = {
     currentQuestionId: null
 };
 
-const TOTAL_QUESTIONS = 30;
+const TOTAL_QUESTIONS = 60;
 const POINTS_PER_QUESTION = 10;
+const ITEMS_PER_PAGE = 30;
 const STORAGE_KEY = 'python_drills_state';
 
 const app = document.getElementById('app');
@@ -38,6 +39,7 @@ const finalScoreEl = document.getElementById('final-score');
 const closeModalBtn = document.getElementById('close-modal-btn');
 
 let timerInterval = null;
+let currentPage = 1;
 
 async function init() {
     loadState();
@@ -51,7 +53,7 @@ async function init() {
     backToDashboardBtn.addEventListener('click', () => {
         clearInterval(timerInterval);
         showView('dashboard');
-        renderDashboard();
+        renderDashboard(); // Re-render to maintain current page state
     });
 
     runBtn.addEventListener('click', runTests);
@@ -161,6 +163,7 @@ function showView(viewName) {
     if (viewName === 'workspace') {
         workspaceView.classList.remove('hidden');
         if (editorInstance) {
+            // Little delay to ensure container is visible for layout
             setTimeout(() => editorInstance.layout(), 10);
         }
     }
@@ -169,7 +172,12 @@ function showView(viewName) {
 function renderDashboard() {
     questionGrid.innerHTML = '';
     
-    QUESTIONS.forEach(q => {
+    // Pagination Logic
+    const startIdx = (currentPage - 1) * ITEMS_PER_PAGE;
+    const endIdx = startIdx + ITEMS_PER_PAGE;
+    const pageQuestions = QUESTIONS.slice(startIdx, endIdx);
+    
+    pageQuestions.forEach(q => {
         const card = document.createElement('div');
         const status = currentState.status[q.id];
         const isSolved = status === 'solved';
@@ -188,8 +196,41 @@ function renderDashboard() {
         questionGrid.appendChild(card);
     });
     
+    renderPaginationControls();
     updateGlobalStats();
     checkCompletion();
+}
+
+function renderPaginationControls() {
+    // Check if controls already exist, if so remove them to re-render or just clear grid which we did
+    // We will append controls to questionGrid as a separate element or after it in the dashboard-view
+    
+    let paginationContainer = document.getElementById('pagination-controls');
+    if (!paginationContainer) {
+        paginationContainer = document.createElement('div');
+        paginationContainer.id = 'pagination-controls';
+        paginationContainer.className = 'pagination-container';
+        dashboardView.querySelector('main').after(paginationContainer); // Place after the grid
+    }
+    
+    paginationContainer.innerHTML = '';
+    const totalPages = Math.ceil(QUESTIONS.length / ITEMS_PER_PAGE);
+
+    if (totalPages <= 1) return;
+
+    for (let i = 1; i <= totalPages; i++) {
+        const btn = document.createElement('button');
+        btn.textContent = `Page ${i}`;
+        btn.className = `pagination-btn ${i === currentPage ? 'active' : ''}`;
+        btn.addEventListener('click', () => changePage(i));
+        paginationContainer.appendChild(btn);
+    }
+}
+
+function changePage(page) {
+    currentPage = page;
+    renderDashboard();
+    window.scrollTo(0, 0);
 }
 
 function updateGlobalStats() {
