@@ -211,6 +211,44 @@ button:disabled {
     background-color: #1e1e1e;
     position: relative;
     display: flex;
+    flex-direction: column;
+}
+
+.editor-tabs {
+    height: 35px;
+    background-color: var(--sidebar-bg);
+    display: flex;
+    border-bottom: 1px solid var(--border-color);
+    overflow-x: auto;
+}
+
+.tab {
+    padding: 0 15px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 13px;
+    color: #969696;
+    border-right: 1px solid var(--border-color);
+    background-color: var(--sidebar-bg);
+    user-select: none;
+    min-width: 100px;
+}
+
+.tab:hover {
+    color: var(--text-color);
+}
+
+.tab.active {
+    background-color: #1e1e1e;
+    color: var(--text-color);
+    border-top: 2px solid var(--accent-color);
+}
+
+.tab-icon {
+    margin-right: 6px;
+    font-size: 14px;
 }
 #code-editor {
     width: 100%;

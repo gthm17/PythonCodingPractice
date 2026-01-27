@@ -1048,5 +1048,156 @@ const QUESTIONS = [
       { "input": "a b c", "output": "A B C", "hidden": true }
     ],
     "solution": "print(input().title())"
+  },
+  {
+    "id": 91,
+    "title": "File Read All",
+    "description": "Open a file named 'data.txt' in read mode and print its entire content. [cite: 83, 86, 91]",
+    "requiredFiles": [{ "name": "data.txt", "mode": "r" }],
+    "testCases": [
+      { "input": "Hello World", "output": "Hello World", "hidden": false },
+      { "input": "Python File Handling", "output": "Python File Handling", "hidden": true }
+    ],
+    "solution": "file = open('data.txt', 'r')\\nprint(file.read())\\nfile.close()"
+  },
+  {
+    "id": 92,
+    "title": "The 'with' Statement Read",
+    "description": "Use the 'with' statement to open 'data.txt' and print its content. [cite: 105, 107]",
+    "requiredFiles": [{ "name": "data.txt", "mode": "r" }],
+    "testCases": [
+      { "input": "Safe Opening", "output": "Safe Opening", "hidden": false }
+    ],
+    "solution": "with open('data.txt', 'r') as file:\\n    print(file.read())"
+  },
+  {
+    "id": 93,
+    "title": "Write and Overwrite",
+    "description": "Take a string input and write it to 'out.txt' using 'w' mode. Then read the file and print the content. [cite: 74, 98, 100]",
+    "requiredFiles": [{ "name": "out.txt", "mode": "w" }],
+    "testCases": [
+      { "input": "New Content", "output": "New Content", "hidden": false }
+    ],
+    "solution": "text = input()\\nwith open('out.txt', 'w') as f:\\n    f.write(text)\\nwith open('out.txt', 'r') as f:\\n    print(f.read())"
+  },
+  {
+    "id": 94,
+    "title": "Appending Data",
+    "description": "Open 'log.txt' in append mode ('a') and add the input string to the end of the file. [cite: 74, 80, 101, 104]",
+    "requiredFiles": [{ "name": "log.txt", "mode": "a" }],
+    "testCases": [
+      { "input": "First line\\nSecond line", "output": "First line\\nSecond line", "hidden": false }
+    ],
+    "solution": "data = input()\\nwith open('log.txt', 'a') as f:\\n    f.write('\\n' + data)"
+  },
+  {
+    "id": 95,
+    "title": "Read First Line Only",
+    "description": "Open 'notes.txt' and use the readline() method to print only the first line. [cite: 92, 95]",
+    "requiredFiles": [{ "name": "notes.txt", "mode": "r" }],
+    "testCases": [
+      { "input": "Line 1\\nLine 2", "output": "Line 1", "hidden": false }
+    ],
+    "solution": "with open('notes.txt', 'r') as f:\\n    print(f.readline().strip())"
+  },
+  {
+    "id": 96,
+    "title": "Count Lines in File",
+    "description": "Read 'data.txt' and count the total number of lines using readlines(). [cite: 93]",
+    "requiredFiles": [{ "name": "data.txt", "mode": "r" }],
+    "testCases": [
+      { "input": "A\\nB\\nC", "output": "3", "hidden": false }
+    ],
+    "solution": "with open('data.txt', 'r') as f:\\n    print(len(f.readlines()))"
+  },
+  {
+    "id": 97,
+    "title": "CSV Row Reader",
+    "description": "Import the 'csv' module. Read 'data.csv' and print each row as a list. [cite: 115, 117]",
+    "requiredFiles": [{ "name": "data.csv", "mode": "r" }],
+    "testCases": [
+      { "input": "Name,Age\\nAlice,21", "output": "['Name', 'Age']\\n['Alice', '21']", "hidden": false }
+    ],
+    "solution": "import csv\\nwith open('data.csv', 'r') as f:\\n    reader = csv.reader(f)\\n    for row in reader:\\n        print(row)"
+  },
+  {
+    "id": 98,
+    "title": "CSV Writerow",
+    "description": "Write a header and data row into 'tasks.csv' using csv.writer(). [cite: 118, 120, 122]",
+    "requiredFiles": [{ "name": "tasks.csv", "mode": "w" }],
+    "testCases": [
+      { "input": "run", "output": "ID,Task\\n1,Code", "hidden": false }
+    ],
+    "solution": "import csv\\nwith open('tasks.csv', 'w', newline='') as f:\\n    writer = csv.writer(f)\\n    writer.writerow(['ID', 'Task'])\\n    writer.writerow(['1', 'Code'])"
+  },
+  {
+    "id": 99,
+    "title": "File Existence Check",
+    "description": "Catch the FileNotFoundError if 'hidden.txt' is missing and print 'File Missing'. [cite: 132, 145]",
+    "requiredFiles": [],
+    "testCases": [
+      { "input": "missing", "output": "File Missing", "hidden": false }
+    ],
+    "solution": "try:\\n    with open('hidden.txt', 'r') as f: print(f.read())\\nexcept FileNotFoundError:\\n    print('File Missing')"
+  },
+  {
+    "id": 100,
+    "title": "Read and Write (r+)",
+    "description": "Open 'config.txt' in 'r+' mode to both read and write. [cite: 81]",
+    "requiredFiles": [{ "name": "config.txt", "mode": "r+" }],
+    "testCases": [
+      { "input": "Old", "output": "Old", "hidden": false }
+    ],
+    "solution": "with open('config.txt', 'r+') as f:\\n    print(f.read())\\n    f.write('Updated')"
+  },
+  {
+    "id": 101,
+    "title": "Write Multiple Lines",
+    "description": "Use writelines() to write a list of strings into 'items.txt'. [cite: 74]",
+    "requiredFiles": [{ "name": "items.txt", "mode": "w" }],
+    "testCases": [
+      { "input": "Apple Orange", "output": "Apple\\nOrange", "hidden": false }
+    ],
+    "solution": "items = input().split()\\nwith open('items.txt', 'w') as f:\\n    f.writelines([item + '\\n' for item in items])"
+  },
+  {
+    "id": 102,
+    "title": "Binary File Concept",
+    "description": "Open 'image.png' in binary read mode ('rb') and print the content type. [cite: 73]",
+    "requiredFiles": [{ "name": "image.png", "mode": "rb" }],
+    "testCases": [
+      { "input": "bin", "output": "<class 'bytes'>", "hidden": false }
+    ],
+    "solution": "with open('image.png', 'rb') as f:\\n    print(type(f.read()))"
+  },
+  {
+    "id": 103,
+    "title": "CSV Header Extractor",
+    "description": "Read 'data.csv' and print only the header (first row). [cite: 113, 117]",
+    "requiredFiles": [{ "name": "data.csv", "mode": "r" }],
+    "testCases": [
+      { "input": "ID,Name,Status\\n1,Alice,Active", "output": "['ID', 'Name', 'Status']", "hidden": false }
+    ],
+    "solution": "import csv\\nwith open('data.csv', 'r') as f:\\n    reader = csv.reader(f)\\n    print(next(reader))"
+  },
+  {
+    "id": 104,
+    "title": "Word Count in File",
+    "description": "Read 'story.txt' and count the total number of words. [cite: 91]",
+    "requiredFiles": [{ "name": "story.txt", "mode": "r" }],
+    "testCases": [
+      { "input": "Python is fun", "output": "3", "hidden": false }
+    ],
+    "solution": "with open('story.txt', 'r') as f:\\n    print(len(f.read().split()))"
+  },
+  {
+    "id": 105,
+    "title": "Clean File and Write",
+    "description": "Ensure 'temp.txt' is overwritten with the word 'Empty'. [cite: 79, 98]",
+    "requiredFiles": [{ "name": "temp.txt", "mode": "w" }],
+    "testCases": [
+      { "input": "go", "output": "Empty", "hidden": false }
+    ],
+    "solution": "with open('temp.txt', 'w') as f:\\n    f.write('Empty')\\nwith open('temp.txt', 'r') as f:\\n    print(f.read())"
   }
 ];
