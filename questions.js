@@ -702,5 +702,351 @@ const QUESTIONS = [
       { "input": "rat tar", "output": "True", "hidden": true }
     ],
     "solution": "w1, w2 = input().split()\nprint(sorted(w1) == sorted(w2))"
+  },
+  {
+    "id": 61,
+    "title": "String Character Access",
+    "description": "Given a string, print its first and last character using indexing[cite: 18, 20]. Input: a single word. Output: two characters separated by a space.",
+    "testCases": [
+      { "input": "Python", "output": "P n", "hidden": false },
+      { "input": "Hello", "output": "H o", "hidden": false },
+      { "input": "A", "output": "A A", "hidden": true },
+      { "input": "12345", "output": "1 5", "hidden": true }
+    ],
+    "solution": "s = input().strip()\nprint(f\"{s[0]} {s[-1]}\")"
+  },
+  {
+    "id": 62,
+    "title": "Reverse Slicing",
+    "description": "Reverse a given string using the slicing technique [start:end:step][cite: 24, 27, 29].",
+    "testCases": [
+      { "input": "OpenAI", "output": "IAnepO", "hidden": false },
+      { "input": "racecar", "output": "racecar", "hidden": false },
+      { "input": "12345", "output": "54321", "hidden": true },
+      { "input": "a b c", "output": "c b a", "hidden": true }
+    ],
+    "solution": "print(input().strip()[::-1])"
+  },
+  {
+    "id": 63,
+    "title": "Safe Integer Conversion",
+    "description": "Try to convert a user input to an integer. If it fails due to a ValueError, print 'Invalid'; otherwise, print the number[cite: 136, 150].",
+    "testCases": [
+      { "input": "100", "output": "100", "hidden": false },
+      { "input": "abc", "output": "Invalid", "hidden": false },
+      { "input": "12.5", "output": "Invalid", "hidden": true },
+      { "input": "-50", "output": "-50", "hidden": true }
+    ],
+    "solution": "try:\n    print(int(input()))\nexcept ValueError:\n    print('Invalid')"
+  },
+  {
+    "id": 64,
+    "title": "Email Case Normalizer",
+    "description": "Convert a given email string to all lowercase and remove any leading/trailing whitespace using lower() and strip()[cite: 34, 36, 38].",
+    "testCases": [
+      { "input": "  User@Example.COM  ", "output": "user@example.com", "hidden": false },
+      { "input": "ADMIN@mail.in", "output": "admin@mail.in", "hidden": false },
+      { "input": "  test  ", "output": "test", "hidden": true },
+      { "input": "UPPER", "output": "upper", "hidden": true }
+    ],
+    "solution": "print(input().strip().lower())"
+  },
+  {
+    "id": 65,
+    "title": "Zero Division Shield",
+    "description": "Take two numbers a and b. Print a/b. Catch ZeroDivisionError and print 'Cannot divide'[cite: 149, 152].",
+    "testCases": [
+      { "input": "10 0", "output": "Cannot divide", "hidden": false },
+      { "input": "10 2", "output": "5.0", "hidden": false },
+      { "input": "0 5", "output": "0.0", "hidden": true },
+      { "input": "-6 2", "output": "-3.0", "hidden": true }
+    ],
+    "solution": "try:\n    a, b = map(int, input().split())\n    print(a/b)\nexcept ZeroDivisionError:\n    print('Cannot divide')"
+  },
+  {
+    "id": 66,
+    "title": "Word Extractor",
+    "description": "Extract a substring from index 1 to 4 (index 4 excluded) from a given string[cite: 26, 31].",
+    "testCases": [
+      { "input": "Programming", "output": "rog", "hidden": false },
+      { "input": "Python", "output": "yth", "hidden": false },
+      { "input": "ABCD", "output": "BCD", "hidden": true },
+      { "input": "123456", "output": "234", "hidden": true }
+    ],
+    "solution": "print(input().strip()[1:4])"
+  },
+  {
+    "id": 67,
+    "title": "Digit Validator",
+    "description": "Check if the input string consists only of digits using isdigit()[cite: 48, 50]. Output True or False.",
+    "testCases": [
+      { "input": "2026", "output": "True", "hidden": false },
+      { "input": "Python3", "output": "False", "hidden": false },
+      { "input": "12 34", "output": "False", "hidden": true },
+      { "input": "000", "output": "True", "hidden": true }
+    ],
+    "solution": "print(input().strip().isdigit())"
+  },
+  {
+    "id": 68,
+    "title": "f-String Greeting",
+    "description": "Given a name and age, use an f-string to output: 'My name is [name] and I am [age] years old'[cite: 63, 64].",
+    "testCases": [
+      { "input": "Alice 21", "output": "My name is Alice and I am 21 years old", "hidden": false },
+      { "input": "Bob 30", "output": "My name is Bob and I am 30 years old", "hidden": false },
+      { "input": "Sam 5", "output": "My name is Sam and I am 5 years old", "hidden": true }
+    ],
+    "solution": "n, a = input().split()\nprint(f\"My name is {n} and I am {a} years old\")"
+  },
+  {
+    "id": 69,
+    "title": "The finally Cleanup",
+    "description": "Simulate a process where 'Processing' is printed in the try block, and 'Finished' is always printed in the finally block[cite: 142, 143, 145].",
+    "testCases": [
+      { "input": "test", "output": "Processing\nFinished", "hidden": false },
+      { "input": "123", "output": "Processing\nFinished", "hidden": true }
+    ],
+    "solution": "try:\n    print('Processing')\nfinally:\n    print('Finished')"
+  },
+  {
+    "id": 70,
+    "title": "Negative Step Slice",
+    "description": "Print every second character of a string in reverse order using slicing[cite: 27, 29].",
+    "testCases": [
+      { "input": "Python", "output": "nhy", "hidden": false },
+      { "input": "123456", "output": "642", "hidden": false },
+      { "input": "ABCDE", "output": "ECA", "hidden": true },
+      { "input": "hi", "output": "i", "hidden": true }
+    ],
+    "solution": "print(input().strip()[::-2])"
+  },
+  {
+    "id": 71,
+    "title": "Custom Age Validator",
+    "description": "Input an age. If age < 18, raise a ValueError with the message 'Minor'. Catch it and print the message[cite: 157, 159].",
+    "testCases": [
+      { "input": "15", "output": "Minor", "hidden": false },
+      { "input": "20", "output": "20", "hidden": false },
+      { "input": "18", "output": "18", "hidden": true },
+      { "input": "5", "output": "Minor", "hidden": true }
+    ],
+    "solution": "try:\n    a = int(input())\n    if a < 18: raise ValueError('Minor')\n    print(a)\nexcept ValueError as e:\n    print(e)"
+  },
+  {
+    "id": 72,
+    "title": "String Replacement",
+    "description": "Replace all occurrences of 'bad' with 'good' in a sentence using replace()[cite: 41, 45].",
+    "testCases": [
+      { "input": "bad day bad luck", "output": "good day good luck", "hidden": false },
+      { "input": "it is not bad", "output": "it is not good", "hidden": false },
+      { "input": "badbad", "output": "goodgood", "hidden": true },
+      { "input": "hello", "output": "hello", "hidden": true }
+    ],
+    "solution": "print(input().replace('bad', 'good'))"
+  },
+  {
+    "id": 73,
+    "title": "Multiple Exception Handling",
+    "description": "Catch IndexError or ValueError. List is [10, 20, 30][cite: 132, 134].",
+    "testCases": [
+      { "input": "5", "output": "Out of range", "hidden": false },
+      { "input": "x", "output": "Invalid input", "hidden": false },
+      { "input": "1", "output": "20", "hidden": true },
+      { "input": "-1", "output": "30", "hidden": true }
+    ],
+    "solution": "try:\n    idx = int(input())\n    print([10, 20, 30][idx])\nexcept IndexError:\n    print('Out of range')\nexcept ValueError:\n    print('Invalid input')"
+  },
+  {
+    "id": 74,
+    "title": "Vowel Counter",
+    "description": "Count how many vowels (a, e, i, o, u) are in a string[cite: 32, 38].",
+    "testCases": [
+      { "input": "Icecream", "output": "4", "hidden": false },
+      { "input": "Python", "output": "1", "hidden": false },
+      { "input": "AEIOU", "output": "5", "hidden": true },
+      { "input": "bcdfg", "output": "0", "hidden": true }
+    ],
+    "solution": "s = input().lower()\nprint(sum(1 for char in s if char in 'aeiou'))"
+  },
+  {
+    "id": 75,
+    "title": "The format() Placeholder",
+    "description": "Use the .format() method to insert a price: 'Total: {}.00 dollars'[cite: 65, 68, 69].",
+    "testCases": [
+      { "input": "50", "output": "Total: 50.00 dollars", "hidden": false },
+      { "input": "100", "output": "Total: 100.00 dollars", "hidden": false },
+      { "input": "5", "output": "Total: 5.00 dollars", "hidden": true }
+    ],
+    "solution": "print(\"Total: {}.00 dollars\".format(input()))"
+  },
+  {
+    "id": 76,
+    "title": "Check Alphanumeric",
+    "description": "Verify if a string contains only letters and numbers using isalnum()[cite: 52].",
+    "testCases": [
+      { "input": "Python3", "output": "True", "hidden": false },
+      { "input": "Python 3!", "output": "False", "hidden": false },
+      { "input": "123", "output": "True", "hidden": true },
+      { "input": "abc@", "output": "False", "hidden": true }
+    ],
+    "solution": "print(input().strip().isalnum())"
+  },
+  {
+    "id": 77,
+    "title": "Raise for Negative",
+    "description": "Raise a ValueError if input < 0. Catch and print 'No Negatives'[cite: 157, 159].",
+    "testCases": [
+      { "input": "-5", "output": "No Negatives", "hidden": false },
+      { "input": "10", "output": "10", "hidden": false },
+      { "input": "0", "output": "0", "hidden": true },
+      { "input": "-1", "output": "No Negatives", "hidden": true }
+    ],
+    "solution": "try:\n    val = int(input())\n    if val < 0: raise ValueError('No Negatives')\n    print(val)\nexcept ValueError as e: print(e)"
+  },
+  {
+    "id": 78,
+    "title": "Sentence Splitter",
+    "description": "Split a sentence by spaces and print the list[cite: 43, 45].",
+    "testCases": [
+      { "input": "Python is fun", "output": "['Python', 'is', 'fun']", "hidden": false },
+      { "input": "A B C", "output": "['A', 'B', 'C']", "hidden": false },
+      { "input": "One", "output": "['One']", "hidden": true }
+    ],
+    "solution": "print(input().split())"
+  },
+  {
+    "id": 79,
+    "title": "String Uppercase Toggle",
+    "description": "Convert input to uppercase if it starts with 'p'[cite: 35, 38].",
+    "testCases": [
+      { "input": "python", "output": "PYTHON", "hidden": false },
+      { "input": "Java", "output": "java", "hidden": false },
+      { "input": "PHP", "output": "PHP", "hidden": true },
+      { "input": "c++", "output": "c++", "hidden": true }
+    ],
+    "solution": "s = input()\nprint(s.upper() if s.lower().startswith('p') else s.lower())"
+  },
+  {
+    "id": 80,
+    "title": "Exception Else Clause",
+    "description": "Use the 'else' block to print 'Success' if no error occurs during integer conversion[cite: 137, 139, 140].",
+    "testCases": [
+      { "input": "10", "output": "Success", "hidden": false },
+      { "input": "abc", "output": "Error", "hidden": false },
+      { "input": "5.5", "output": "Error", "hidden": true },
+      { "input": "-1", "output": "Success", "hidden": true }
+    ],
+    "solution": "try:\n    int(input())\nexcept ValueError:\n    print('Error')\nelse:\n    print('Success')"
+  },
+  {
+    "id": 81,
+    "title": "Multi-line String Simulation",
+    "description": "Calculate the length of the provided string[cite: 15, 17].",
+    "testCases": [
+      { "input": "Hello", "output": "5", "hidden": false },
+      { "input": "Python Prog", "output": "11", "hidden": false },
+      { "input": " ", "output": "1", "hidden": true }
+    ],
+    "solution": "print(len(input()))"
+  },
+  {
+    "id": 82,
+    "title": "Index of Character",
+    "description": "Find the index of the first 'a'. If not found, print -1[cite: 18, 21].",
+    "testCases": [
+      { "input": "Banana", "output": "1", "hidden": false },
+      { "input": "Sky", "output": "-1", "hidden": false },
+      { "input": "apple", "output": "0", "hidden": true },
+      { "input": "data", "output": "1", "hidden": true }
+    ],
+    "solution": "print(input().find('a'))"
+  },
+  {
+    "id": 83,
+    "title": "Type Error Protection",
+    "description": "Try adding a string and an integer. Catch TypeError and print 'Type Mismatch'[cite: 151].",
+    "testCases": [
+      { "input": "Age 25", "output": "Type Mismatch", "hidden": false },
+      { "input": "10 20", "output": "Type Mismatch", "hidden": true }
+    ],
+    "solution": "try:\n    s, i = input().split()\n    res = s + int(i)\nexcept TypeError:\n    print('Type Mismatch')"
+  },
+  {
+    "id": 84,
+    "title": "Palindrome String",
+    "description": "Check if a string is a palindrome[cite: 24, 29].",
+    "testCases": [
+      { "input": "madam", "output": "True", "hidden": false },
+      { "input": "Python", "output": "False", "hidden": false },
+      { "input": "121", "output": "True", "hidden": true },
+      { "input": "Abba", "output": "False", "hidden": true }
+    ],
+    "solution": "s = input().strip()\nprint(s == s[::-1])"
+  },
+  {
+    "id": 85,
+    "title": "Strip and Replace",
+    "description": "Remove trailing spaces and replace internal spaces with hyphens[cite: 36, 41].",
+    "testCases": [
+      { "input": "  Hello World  ", "output": "Hello-World", "hidden": false },
+      { "input": "Code Sphere", "output": "Code-Sphere", "hidden": false },
+      { "input": " a b ", "output": "a-b", "hidden": true }
+    ],
+    "solution": "print(input().strip().replace(' ', '-'))"
+  },
+  {
+    "id": 86,
+    "title": "Negative Indexing Last 3",
+    "description": "Extract the last three characters using negative indexing[cite: 22, 23].",
+    "testCases": [
+      { "input": "Pythonic", "output": "nic", "hidden": false },
+      { "input": "Coding", "output": "ing", "hidden": false },
+      { "input": "12345", "output": "345", "hidden": true },
+      { "input": "abc", "output": "abc", "hidden": true }
+    ],
+    "solution": "print(input().strip()[-3:])"
+  },
+  {
+    "id": 87,
+    "title": "Custom Exception Class",
+    "description": "Inherit from Exception class and raise it[cite: 153, 155, 156].",
+    "testCases": [
+      { "input": "trigger", "output": "Caught", "hidden": false }
+    ],
+    "solution": "class MyError(Exception): pass\ntry: raise MyError()\nexcept MyError: print('Caught')"
+  },
+  {
+    "id": 88,
+    "title": "String to List of Ints",
+    "description": "Convert space-separated digits to a list of integers. Catch ValueError[cite: 43, 150].",
+    "testCases": [
+      { "input": "1 2 3", "output": "[1, 2, 3]", "hidden": false },
+      { "input": "1 a 3", "output": "Error", "hidden": false },
+      { "input": "10 20", "output": "[10, 20]", "hidden": true },
+      { "input": " ", "output": "[]", "hidden": true }
+    ],
+    "solution": "try:\n    print([int(x) for x in input().split()])\nexcept ValueError:\n    print('Error')"
+  },
+  {
+    "id": 89,
+    "title": "f-String Precision",
+    "description": "Format a float to 2 decimal places[cite: 60, 63].",
+    "testCases": [
+      { "input": "3.14159", "output": "3.14", "hidden": false },
+      { "input": "2.5", "output": "2.50", "hidden": false },
+      { "input": "10", "output": "10.00", "hidden": true }
+    ],
+    "solution": "print(f\"{float(input()):.2f}\")"
+  },
+  {
+    "id": 90,
+    "title": "Title Case Conversion",
+    "description": "Convert string to Title Case (capitalize first letter of each word)[cite: 32, 38].",
+    "testCases": [
+      { "input": "python is fun", "output": "Python Is Fun", "hidden": false },
+      { "input": "HELLO WORLD", "output": "Hello World", "hidden": false },
+      { "input": "a b c", "output": "A B C", "hidden": true }
+    ],
+    "solution": "print(input().title())"
   }
 ];

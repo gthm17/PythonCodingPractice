@@ -7,7 +7,7 @@ let currentState = {
     currentQuestionId: null
 };
 
-const TOTAL_QUESTIONS = 60;
+const TOTAL_QUESTIONS = QUESTIONS.length;
 const POINTS_PER_QUESTION = 10;
 const ITEMS_PER_PAGE = 30;
 const STORAGE_KEY = 'python_drills_state';
