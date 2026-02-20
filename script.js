@@ -600,9 +600,9 @@ _output_capture.data = []
             if (!passed) {
                 allPassed = false;
                 if (tc.hidden) {
-                    failedMsg += `Test Case ${i+1} (Hidden) Failed.\\n\\n`;
+                    failedMsg += `Test Case ${i+1} (Hidden) Failed.\n\n`;
                 } else {
-                    failedMsg += `Test Case ${i+1} Failed.\\nInput: ${tc.input}\\nExpected: ${tc.output}\\nActual:\\n${actualOutput}\\n\\n`;
+                    failedMsg += `Test Case ${i+1} Failed.\nInput: ${tc.input}\nExpected: ${tc.output}\nActual:\n${actualOutput}\n\n`;
                 }
             }
             

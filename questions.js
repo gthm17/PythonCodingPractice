@@ -1199,5 +1199,251 @@ const QUESTIONS = [
       { "input": "go", "output": "Empty", "hidden": false }
     ],
     "solution": "with open('temp.txt', 'w') as f:\\n    f.write('Empty')\\nwith open('temp.txt', 'r') as f:\\n    print(f.read())"
+  },
+  {
+    "id": 106,
+    "title": "Greeting Function",
+    "description": "Write a function greet() that prints 'Hello, World!' when called.",
+    "testCases": [
+      { "input": "", "output": "Hello, World!", "hidden": false }
+    ],
+    "solution": "def greet():\n    print('Hello, World!')\n\ngreet()"
+  },
+  {
+    "id": 107,
+    "title": "Personal Greeting",
+    "description": "Write a function greet(name) that prints 'Hello, <name>!'",
+    "testCases": [
+      { "input": "Alice", "output": "Hello, Alice!", "hidden": false },
+      { "input": "Bob", "output": "Hello, Bob!", "hidden": false }
+    ],
+    "solution": "def greet(name):\n    print(f'Hello, {name}!')\n\ngreet(input())"
+  },
+  {
+    "id": 108,
+    "title": "Sum of Two Numbers",
+    "description": "Define a function add(a, b) that returns the sum of two numbers.",
+    "testCases": [
+      { "input": "3 5", "output": "8", "hidden": false },
+      { "input": "10 20", "output": "30", "hidden": false }
+    ],
+    "solution": "def add(a, b):\n    return a + b\n\na, b = map(int, input().split())\nprint(add(a, b))"
+  },
+  {
+    "id": 109,
+    "title": "Positional Arguments",
+    "description": "Write a function multiply(a, b) that prints the product of two numbers using positional arguments.",
+    "testCases": [
+      { "input": "2 3", "output": "6", "hidden": false },
+      { "input": "5 10", "output": "50", "hidden": false }
+    ],
+    "solution": "def multiply(a, b):\n    print(a * b)\n\na, b = map(int, input().split())\nmultiply(a, b)"
+  },
+  {
+    "id": 110,
+    "title": "Keyword Arguments",
+    "description": "Write a function introduce(name, age) that prints 'My name is <name> and I am <age> years old.' Use keyword arguments when calling.",
+    "testCases": [
+      { "input": "Alice 25", "output": "My name is Alice and I am 25 years old.", "hidden": false }
+    ],
+    "solution": "def introduce(name, age):\n    print(f'My name is {name} and I am {age} years old.')\n\nn, a = input().split()\nintroduce(name=n, age=a)"
+  },
+  {
+    "id": 111,
+    "title": "Default Arguments",
+    "description": "Write a function power(base, exp=2) that returns base raised to exp. If exp is not provided, default to 2.",
+    "testCases": [
+      { "input": "5", "output": "25", "hidden": false },
+      { "input": "2 3", "output": "8", "hidden": false }
+    ],
+    "solution": "def power(base, exp=2):\n    return base ** exp\n\nnums = list(map(int, input().split()))\nif len(nums) == 1:\n    print(power(nums[0]))\nelse:\n    print(power(nums[0], nums[1]))"
+  },
+  {
+    "id": 112,
+    "title": "Sum with *args",
+    "description": "Write a function sum_all(*args) that returns the sum of all arguments.",
+    "testCases": [
+      { "input": "1 2 3", "output": "6", "hidden": false },
+      { "input": "10 20 30 40", "output": "100", "hidden": false }
+    ],
+    "solution": "def sum_all(*args):\n    return sum(args)\n\nnums = list(map(int, input().split()))\nprint(sum_all(*nums))"
+  },
+  {
+    "id": 113,
+    "title": "Print Keyword Arguments",
+    "description": "Write a function print_info(**kwargs) that prints each key-value pair in the format 'key: value'.",
+    "testCases": [
+      { "input": "", "output": "name: Alice\nage: 25", "hidden": false }
+    ],
+    "solution": "def print_info(**kwargs):\n    for k, v in kwargs.items():\n        print(f'{k}: {v}')\n\nprint_info(name='Alice', age=25)"
+  },
+  {
+    "id": 114,
+    "title": "Flexible Function",
+    "description": "Write a function describe(*args, **kwargs) that prints all positional arguments and keyword arguments.",
+    "testCases": [
+      { "input": "", "output": "Positional: (1, 2, 3)\nKeyword: {'name': 'Alice'}", "hidden": false }
+    ],
+    "solution": "def describe(*args, **kwargs):\n    print('Positional:', args)\n    print('Keyword:', kwargs)\n\ndescribe(1, 2, 3, name='Alice')"
+  },
+  {
+    "id": 115,
+    "title": "Return Statement Example",
+    "description": "Write a function square(n) that returns the square of n.",
+    "testCases": [
+      { "input": "4", "output": "16", "hidden": false },
+      { "input": "10", "output": "100", "hidden": false }
+    ],
+    "solution": "def square(n):\n    return n * n\n\nprint(square(int(input())))"
+  },
+  {
+    "id": 116,
+    "title": "Local vs Global",
+    "description": "Demonstrate local and global scope by defining a global variable x=10 and a function that prints x inside and outside.",
+    "testCases": [
+      { "input": "", "output": "Inside function: 10\nOutside function: 10", "hidden": false }
+    ],
+    "solution": "x = 10\n\ndef show():\n    print('Inside function:', x)\n\nshow()\nprint('Outside function:', x)"
+  },
+  {
+    "id": 117,
+    "title": "Lambda Function",
+    "description": "Write a lambda function to add two numbers.",
+    "testCases": [
+      { "input": "3 7", "output": "10", "hidden": false }
+    ],
+    "solution": "add = lambda a, b: a + b\na, b = map(int, input().split())\nprint(add(a, b))"
+  },
+  {
+    "id": 118,
+    "title": "Lambda with map",
+    "description": "Use lambda with map() to square all numbers in a list.",
+    "testCases": [
+      { "input": "1 2 3", "output": "[1, 4, 9]", "hidden": false }
+    ],
+    "solution": "nums = list(map(int, input().split()))\nsquares = list(map(lambda x: x**2, nums))\nprint(squares)"
+  },
+  {
+    "id": 119,
+    "title": "Lambda with filter",
+    "description": "Use lambda with filter() to get even numbers from a list.",
+    "testCases": [
+      { "input": "1 2 3 4 5", "output": "[2, 4]", "hidden": false }
+    ],
+    "solution": "nums = list(map(int, input().split()))\nevens = list(filter(lambda x: x % 2 == 0, nums))\nprint(evens)"
+  },
+  {
+    "id": 120,
+    "title": "Recursion Factorial",
+    "description": "Write a recursive function factorial(n).",
+    "testCases": [
+      { "input": "5", "output": "120", "hidden": false }
+    ],
+    "solution": "def factorial(n):\n    if n == 0:\n        return 1\n    return n * factorial(n-1)\n\nprint(factorial(int(input())))"
+  },
+  {
+    "id": 121,
+    "title": "List Creation and Indexing",
+    "description": "Create a list of numbers and print the first and last element.",
+    "testCases": [
+      { "input": "1 2 3 4", "output": "First: 1\nLast: 4", "hidden": false }
+    ],
+    "solution": "nums = list(map(int, input().split()))\nprint('First:', nums[0])\nprint('Last:', nums[-1])"
+  },
+  {
+    "id": 122,
+    "title": "List as Function Argument",
+    "description": "Write a function process_list(nums) that takes a list of integers and returns the list with each element doubled.",
+    "testCases": [
+      { "input": "1 2 3", "output": "[2, 4, 6]", "hidden": false },
+      { "input": "5 10", "output": "[10, 20]", "hidden": false }
+    ],
+    "solution": "def process_list(nums):\n    return [x*2 for x in nums]\n\nnums = list(map(int, input().split()))\nprint(process_list(nums))"
+  },
+  {
+    "id": 123,
+    "title": "Tuple as Function Argument",
+    "description": "Write a function sum_tuple(t) that takes a tuple of integers and returns their sum.",
+    "testCases": [
+      { "input": "1 2 3", "output": "6", "hidden": false },
+      { "input": "10 20 30", "output": "60", "hidden": false }
+    ],
+    "solution": "def sum_tuple(t):\n    return sum(t)\n\nt = tuple(map(int, input().split()))\nprint(sum_tuple(t))"
+  },
+  {
+    "id": 124,
+    "title": "Dictionary as Function Argument",
+    "description": "Write a function print_dict(d) that takes a dictionary and prints each key-value pair in the format 'key: value'.",
+    "testCases": [
+      { "input": "", "output": "name: Alice\nage: 25", "hidden": false }
+    ],
+    "solution": "def print_dict(d):\n    for k, v in d.items():\n        print(f'{k}: {v}')\n\nsample = {'name': 'Alice', 'age': 25}\nprint_dict(sample)"
+  },
+  {
+    "id": 125,
+    "title": "Set as Function Argument",
+    "description": "Write a function unique_count(s) that takes a set and returns the number of unique elements.",
+    "testCases": [
+      { "input": "1 2 2 3", "output": "3", "hidden": false },
+      { "input": "5 5 5 5", "output": "1", "hidden": false }
+    ],
+    "solution": "def unique_count(s):\n    return len(s)\n\nnums = set(map(int, input().split()))\nprint(unique_count(nums))"
+  },
+  {
+    "id": 126,
+    "title": "Nested Data Structure Function",
+    "description": "Write a function get_student_grade(data, name) that takes a dictionary of student names and grades, and returns the grade of the given student.",
+    "testCases": [
+      { "input": "Alice", "output": "85", "hidden": false },
+      { "input": "Bob", "output": "90", "hidden": false }
+    ],
+    "solution": "def get_student_grade(data, name):\n    return data.get(name, 'Not Found')\n\nstudents = {'Alice': 85, 'Bob': 90}\nprint(get_student_grade(students, input()))"
+  },
+  {
+    "id": 136,
+    "title": "Combined: List and Exception",
+    "description": "Write a function that takes a list of integers and returns the first element. Handle the case when the list is empty.",
+    "testCases": [
+      { "input": "1 2 3", "output": "1", "hidden": false },
+      { "input": "", "output": "Error: Empty list", "hidden": false }
+    ],
+    "solution": "def first_element(lst):\n    try:\n        return lst[0]\n    except IndexError:\n        return 'Error: Empty list'\n\nnums = input().split()\nnums = list(map(int, nums)) if nums else []\nprint(first_element(nums))"
+  },
+  {
+    "id": 137,
+    "title": "Combined: Dictionary and Exception",
+    "description": "Write a function that takes a dictionary and a key, returns the value, and handles KeyError.",
+    "testCases": [
+      { "input": "Alice", "output": "85", "hidden": false },
+      { "input": "Charlie", "output": "Error: Key not found", "hidden": false }
+    ],
+    "solution": "def get_value(d, key):\n    try:\n        return d[key]\n    except KeyError:\n        return 'Error: Key not found'\n\nstudents = {'Alice':85,'Bob':90}\nprint(get_value(students, input()))"
+  },
+  {
+    "id": 138,
+    "title": "Combined: String and Recursion",
+    "description": "Write a recursive function that reverses a string.",
+    "testCases": [
+      { "input": "hello", "output": "olleh", "hidden": false }
+    ],
+    "solution": "def reverse(s):\n    if len(s)==0:\n        return s\n    return reverse(s[1:]) + s[0]\n\nprint(reverse(input()))"
+  },
+  {
+    "id": 139,
+    "title": "Combined: Tuple and Lambda",
+    "description": "Write a lambda function that takes a tuple of integers and returns their sum.",
+    "testCases": [
+      { "input": "1 2 3", "output": "6", "hidden": false }
+    ],
+    "solution": "sum_tuple = lambda t: sum(t)\nt = tuple(map(int, input().split()))\nprint(sum_tuple(t))"
+  },
+  {
+    "id": 140,
+    "title": "Combined: Set and Debugging",
+    "description": "Write a function that takes a set of integers, prints it for debugging, and returns the maximum value.",
+    "testCases": [
+      { "input": "1 2 3 4", "output": "Debug: {1, 2, 3, 4}\nMax: 4", "hidden": false }
+    ],
+    "solution": "def max_in_set(s):\n    print('Debug:', s)\n    return max(s)\n\nnums = set(map(int, input().split()))\nprint('Max:', max_in_set(nums))"
   }
 ];
